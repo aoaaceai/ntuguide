@@ -22,3 +22,7 @@ ver. Zeta @2017-08-06, add some new slides.
 ver. Eta @2017-08-07, add some new slides.
 
 --branch-- (ntuguide) ver. Theta@2017-08-11, add some new slides.
+
+ver.Iota @2017-08-13, add some new slides.
+
+ver.Kappa @2017-08-14, add some new slides.
