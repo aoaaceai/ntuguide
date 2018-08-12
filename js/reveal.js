@@ -39,8 +39,8 @@
 
 			// The "normal" size of the presentation, aspect ratio will be preserved
 			// when the presentation is scaled to fit different resolutions
-			width: 960,
-			height: 700,
+			width: 1080,
+			height: 720,
 
 			// Factor of the display size that should remain empty around the content
 			margin: 0.04,
@@ -56,7 +56,7 @@
 			progress: true,
 
 			// Display the page number of the current slide
-			slideNumber: false,
+			slideNumber: "h/v",
 
 			// Determine which displays to show the slide number on
 			showSlideNumber: 'all',
@@ -123,7 +123,7 @@
 			autoSlideMethod: null,
 
 			// Enable slide navigation via mouse wheel
-			mouseWheel: false,
+			mouseWheel: true,
 
 			// Apply a 3D roll to links on hover
 			rollingLinks: false,
@@ -132,7 +132,7 @@
 			hideAddressBar: true,
 
 			// Opens links in an iframe preview overlay
-			previewLinks: false,
+			previewLinks: true,
 
 			// Exposes the reveal.js API through window.postMessage
 			postMessage: true,
