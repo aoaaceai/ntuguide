@@ -32,6 +32,8 @@ html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal i
 .reveal footer, .reveal header, .reveal hgroup, .reveal menu, .reveal nav, .reveal section {
   display: block; }
 
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
