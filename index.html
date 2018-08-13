@@ -17,6 +17,9 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
+		<!--D3.js css-->
+    	<script src='https://d3js.org/d3.v5.min.js' charset='utf-8'></script>
+
 		<!-- Animate css-->
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
 
@@ -35,15 +38,15 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
 				<section>
 					<h2 class="animated fadeInUp">那些有關台大的事情</h2>
 					<hr>
-					<p class="animated fadeInUp">Something About NTU ver. λ</p>
-					<!--version lambda-->
+					<p class="animated fadeInUp">Something About NTU ver. μ</p>
+					<!--version mu-->
 					<!--2018-08-13--->
 					<hr>
 					<p class="animated fadeIn"><small>made by rutw</small></p>
-					<!--<p>▼</p>-->
 				</section>
 
 
@@ -155,7 +158,7 @@
 						<a href="https://www.ptt.cc/bbs/NTU/M.1205178889.A.8A6.html" 
 						target="_blank">
 						<p>點我看系別的代號</p></a>
-						<!--<p>文 1 理 2 社科 3 醫 4 工 5 生農 6 管 7 公衛 8 電資 9 法 A 生科 B</p>-->
+						<!--文 1 理 2 社科 3 醫 4 工 5 生農 6 管 7 公衛 8 電資 9 法 A 生科 B-->
 						<p>最好記一下自己系所是哪個系的</p>
 					</section>
 				</section>
@@ -349,7 +352,7 @@
 					</section>
 
 					<section>
-						<p>或是到<a href="https://my.ntu.edu.tw/" target="_blank"> MyNTU </a>選「學士班修課檢視表」</p>
+						<p>或是到<a href="https://my.ntu.edu.tw/" target="_blank"> myNTU </a>選「學士班修課檢視表」</p>
 						<p>裡面會有你的「系訂必修修課狀況」等可以查詢</p>
 						<p>基本上就是要在大學修業年限裡把他們湊滿就是了</p>
 					</section>
@@ -769,6 +772,187 @@
 					</section>
 
 					<section>
+						<h3>各系 GPA 比例</h3>
+						<small>來源：台大學生會福利部</small>
+						<canvas class="stretch" data-chart="bar">
+							院別, 文學, 理學, 社科, 醫學, 工學, 生農, 管理, 公衛, 電資, 法學, 生科
+							A-以上比例, 71, 55, 61, 74, 59, 62, 67, 75, 66, 60, 57
+							A+比例    , 22, 19, 18, 22, 21, 19, 26, 24, 31, 16, 20					
+						</canvas>
+					</section>
+
+					<!--chart by D3.js
+					<section>
+						<div>各學院A-以上平均</div>
+						<div id='graphic'></div>
+						    <script>
+						      //ord院別 name：院名 percentage：A-以上比例
+						       var data = [{
+						                'ord':1,
+						                'name': '文學',
+						                'percentage': 71,
+						        },
+						            {
+						              'ord':2,
+						              'name': '理學',
+						              'percentage': 55,
+						        },
+						            {
+						              'ord':3,
+						              'name': '社科',
+						              'percentage': 61,
+						        },
+						            {
+						              'ord':4,
+						              'name': '醫學',
+						              'percentage': 74,
+						        },
+						            {
+						              'ord':5,
+						              'name': '工學',
+						              'percentage': 59,
+						      },
+						            {
+						              'ord':6,
+						              'name': '生農',
+						              'percentage': 62,
+						        },
+						            {
+						              'ord':7,
+						              'name': '管理',
+						              'percentage': 67,
+						        },
+						            {
+						              'ord':8,
+						              'name': '公衛',
+						              'percentage': 75,
+						        },
+						            {
+						              'ord':9,
+						              'name': '電資',
+						              'percentage': 66,
+						        },
+						            {
+						              'ord':10,
+						              'name': '法律',
+						              'percentage': 60,
+						        },
+						            {
+						              'ord':11,
+						              'name': '生科',
+						              'percentage': 57,
+						        },
+						        	{
+						        	  'ord':12,
+						              'name': '平均',
+						              'percentage': 65,
+						        	}
+						        ];
+
+						        //排序，照ord序數排出
+						       data = data.sort(function (a, b) {
+						            return d3.ascending(b.ord, a.ord);
+						        })
+
+						        //c邊界
+						        var margin = {
+						            top: 15,
+						            right: 60,
+						            bottom: 15,
+						            left: 60//留多一點才能顯示name
+						        };
+
+						        //c邊界
+						        //總尺寸
+						        var width = 1000 - margin.left - margin.right,
+						            height = 600 - margin.top - margin.bottom;
+						            
+						        var svg = d3.select('#graphic').append('svg')
+						            .attr({'width': width + margin.left + margin.right,
+						                  'height': height + margin.top + margin.bottom
+						                  })
+						            .append('g')
+						            .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+						        
+						        //x axis 橫軸尺寸
+						        var x = d3.scale.linear()
+						            .range([0, width])
+						            .domain([0, d3.max(data, function (d) {
+						                return d.percentage;
+						            })]);
+						       
+						        //y axis 縱軸尺寸
+						        var y = d3.scale.ordinal()
+						            .rangeRoundBands([height, 0], .1)
+						            .domain(data.map(function (d) {
+						                return d.name;
+						            }));
+						       
+						        //縱軸顯示name（比例尺）
+						        var yAxis = d3.svg.axis()
+						            .scale(y)
+						            .orient('left');//靠左
+						           
+						        var gy = svg.append('g')
+						            .attr({
+						            	'fill':'#ffffff',
+						            	'font-size':'20px',
+						            })
+						            .call(yAxis)
+						        var bars = svg.selectAll('.bar')
+						            .data(data)
+						            .enter()
+						            .append('g')
+
+
+						       //長條圖        
+						        bars.append('rect')
+						            .attr({
+						              'y': function (d) {
+						                 return y(d.name);
+						                },
+						              'height': y.rangeBand()-10,
+						              'x': 0,//由零開始長大
+						              'width': 0,
+						              'fill':'#99cc99',
+						             })
+						            .transition()//補間動畫
+						            .duration(3500)//時長
+						            .attr({
+						              'width': function (d) {
+						                return x(d.percentage);//最後長成percentage的長度
+						              }
+						        });
+						        //add a percentage label to the right of each bar
+						        bars.append('text')
+						            .text(function(d){
+						                return 0;
+						              })//不顯示percentage的數字            
+						            .attr({
+						               	'fill':'#ffffff',
+						            	'font-size':'20px',
+						                'y':function (d) {
+						                    return y(d.name) + y.rangeBand()/2 + 4;//數字距離長條圖高度
+						                  },
+						              	'x':10//數字距離長條圖距離 開始長大    
+						            })
+						            .transition()
+						            .duration(3500)
+						            .attr({
+						             'x':function (d) {
+						                  return x(d.percentage) +5;//數字距離長條圖距離
+						                  }
+						              })
+						            .tween('number',function(d){
+						              var i = d3.interpolateRound(0, d.percentage);
+						              return function(t) {
+						              this.textContent = i(t)+'%'//數字漸漸長大
+						             };
+						            }); 							        
+						    </script>
+					</section>-->
+
+					<section>
 						<h2>ＧＰＡ很重要嗎？</h2>
 						<hr>
 						<h1><strong>當然</strong></h1>
@@ -812,6 +996,38 @@
 						<hr>
 					</section>
 
+					<section>
+						<h3>近年轉系比例</h3>
+						<small>註：申請轉出人數包含第一及第二志願／資料來源：台灣大學教務處轉系人數統計表</small>
+						<canvas data-chart="horizontalBar">
+							學年, 106, 105, 104, 103, 102, 101, 100
+							申請轉出人數, 849, 875, 757, 813, 829, 812, 830
+							核准人數, 330, 331, 294, 293, 291, 284, 279
+						</canvas>
+					</section>
+
+					<section>
+						<h3>106學年人口流動狀況</h3>
+						<canvas data-chart="bar">
+								院別,文學,理學,社科,醫學,工學,生農,管理,公衛,電資,法學,生科
+								成功轉出,-70,-38,-53,-8,-37,-90,-12,-3,-6,-3,-10
+								成功轉入,35,42,57,22,30,47,35,1,25,27,9
+<!--
+{
+"options": {"scales": { "xAxes": [{ "stacked": true }] } }
+}
+-->
+						</canvas>
+					</section>
+
+					<!--
+						106學年度
+						院別, 文學, 理學, 社科, 醫學, 工學, 生農, 管理, 公衛, 電資, 法學, 生科
+						申請轉出,127,65,117,21,74,155,26,10,8,3,20
+						成功轉出,70,38,53,8,37,90,12,3,6,3,10
+						申請轉入,64,78,178,55,59,94,109,2,72,126,12
+						成功轉入,35,42,57,22,30,47,35,1,25,27,9
+					-->
 					<section>
 						<h2>轉系的條件怎麼看？</h2>
 						<hr>
@@ -937,14 +1153,6 @@
 					</section>
 
 					<section>
-						<h2>台大是不是很好轉系？</h2>
-						<hr>
-						<p>我覺得</p>
-						<p>問這種問題的我建議去重考比較快</p>
-						<p>也不看看每年多少人死在沙場上</p>
-					</section>
-
-					<section>
 						<h2>每個系的錄取率如何啊？</h2>
 						<hr>
 						<a href="http://reg227.aca.ntu.edu.tw/TMD/stuquery/" target="_blank"><p>台大轉雙輔官網</p></a>
@@ -962,6 +1170,14 @@
 						<p>你可以在開放申請（通常在學年底）時同時丟申請</p>
 						<p>但是你學分和人生可能會爆掉</p>
 						<p>這個時候就會要延畢了</p>
+					</section>
+
+					<section>
+						<h2>我可以從Ａ轉出去Ｂ系</h2>
+						<h2>再雙輔回去Ａ系嗎？</h2>
+						<hr>
+						<p>可以</p>
+						<p>而且事實上很多人都會這麼做</p>
 					</section>
 
 					<section>
@@ -1541,7 +1757,7 @@
 						<p>「學生會費」是沒有要強制繳交的！</p>
 						<p>不繳不會怎樣，繳了好像也不會怎樣呢^^</p>
 						<small>嘻嘻，你可以去打聽一下最近的學生會發生什麼事呢</small>
-						<small>如果你覺得知識王洩題、亂改規則把參加的學生當智障、還能開開心心發出發出十萬給「早就看過題目」的第一名，或是電子投票搞成隔夜選舉、相差高達500票的爭議票數選舉過程超級有瑕疵的學生會很ＯＫ的話</small>
+						<small>如果你覺得知識王洩題、亂改規則把參加的學生當智●、還能開開心心發出發出十萬給「早就看過題目」的第一名，或是電子投票搞成隔夜選舉、相差高達500票的爭議票數、選舉過程超級有瑕疵的學生會很ＯＫ的話</small>
 						<hr>
 						<div>任何人只要有１５０元都能參加慈善知識王大賽！</div>
 					</section>
@@ -1567,7 +1783,52 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+
+				chart: {
+						defaults: {
+							global: {
+								title: { fontColor: "#FFF",
+										fontFamily:"Noto Sans TC" },
+								legend: {
+									labels: { fontColor: "#FFF" },
+								},
+							},
+							scale: {
+								scaleLabel: { fontColor: "#FFF" },
+								gridLines: { color: "#FFF", zeroLineColor: "#FFF" },
+								ticks: { fontColor: "#FFF" },
+							}
+						},
+						line: { borderColor: [ "rgba(20,220,220,0.7))" , "rgba(220,120,120,0.7))", "rgba(20,120,220,0.7))" ], "borderDash": [ [5,10], [0,0] ]},
+						bar: { backgroundColor: [ "rgba(255,222,173 ,0.7)" , "rgba(205,92,92 ,0.7)", "rgba(0,250,154 ,0.7)" ]},
+						pie: { backgroundColor: [ ["rgba(26,188,156 ,0.7)","rgba(39,174,96 ,0.7)","rgba(231,76,60 ,0.7)","rgba(189,195,199 ,0.7)","rgba(46,204,113 ,0.7)","rgba(41,128,185 ,0.7)","rgba(236,240,241 ,0.7)","rgba(52,152,219 ,0.7)","rgba(142,68,173 ,0.7)","rgba(44,62,80 ,0.7)","rgba(241,196,15 ,0.7)"] ]},
+						polarArea: { backgroundColor: [ ["rgba(26,188,156 ,0.7)","rgba(39,174,96 ,0.7)","rgba(231,76,60 ,0.7)","rgba(189,195,199 ,0.7)","rgba(46,204,113 ,0.7)","rgba(41,128,185 ,0.7)","rgba(236,240,241 ,0.7)","rgba(52,152,219 ,0.7)","rgba(142,68,173 ,0.7)","rgba(44,62,80 ,0.7)","rgba(241,196,15 ,0.7)"] ]},
+						radar: { borderColor: [ "rgba(20,220,220,0.7)" , "rgba(220,120,120,0.7)", "rgba(20,120,220,0.7)" ]},
+						horizontalBar: { backgroundColor: [ "rgba(20,220,220,0.7)" , "rgba(220,120,120,0.7)", "rgba(20,120,220,0.7)" ]},
+					},
+
+				menu: {
+					markers: true,
+					numbers: true,
+					themes: false,
+					transitions: false,
+				},
+
+
+				toolbar: {
+					captureMenu: true,
+					fullscreen: true,
+					overview :true,
+					pause: true,
+				},
+
 				dependencies: [
+					{ src: 'plugin/chart/Chart.min.js' },
+					{ src: 'plugin/chart/csv2chart.js' },
+					{ src: 'plugin/menu/menu.js',async: true },
+					{ src: 'plugin/toolbar/toolbar.js',async: true },
+					{ src: 'https://d3js.org/d3.v5.min.js' },
+					{ src: 'plugin/reveald3/reveald3.js'},
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },

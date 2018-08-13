@@ -1,28 +1,34 @@
 # ntuguide
-ntu_guide 台大完全指南
 
-made by ChingRu
+## 那些有關台大的事情
 
-slide framework based on reveal.js.
+#### made by rutw
 
-ver. Alpah @ 2017-07-31, the first version of the slide.
+#### slide framework based on reveal.js.
 
-ver. Beta @ 2017-08-01, add some new elements and slides.
+- ver. Alpah @ 2017-07-31, the first version of the slide.
 
-ver. Gamma @ 2017-08-02, add new pictures to slides.
+- ver. Beta @ 2017-08-01, add some new elements and slides.
 
-ver. Delta @ 2017-08-02, public the Demo version on the internet.
+- ver. Gamma @ 2017-08-02, add new pictures to slides.
 
---branch-- ver. Demo @ 2017-08-02 (./demo.html)
+- ver. Delta @ 2017-08-02, public the Demo version on the internet.
 
-ver. Epsilon @ 2017-08-03, add some new elements and slides.
+- --branch-- ver. Demo @ 2017-08-02 (./demo.html)
+	>2018.08 already remove
 
-ver. Zeta @2017-08-06, add some new slides.
+- ver. Epsilon @ 2017-08-03, add some new elements and slides.
 
-ver. Eta @2017-08-07, add some new slides.
+- ver. Zeta @2017-08-06, add some new slides.
+
+- ver. Eta @2017-08-07, add some new slides.
 
 --branch-- (ntuguide) ver. Theta@2017-08-11, add some new slides.
 
-ver.Iota @2017-08-13, add some new slides.
+- ver.Iota @2017-08-13, add some new slides.
 
-ver.Kappa @2017-08-14, add some new slides.
+- ver.Kappa @2017-08-14, add some new slides.
+
+- ver.Lambda @2018-07-31, fixed dates.
+
+- ver.Mu @2018-08-13, update 2018's schedule.
